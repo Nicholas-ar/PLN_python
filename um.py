@@ -1,18 +1,18 @@
 import re
 import operator
 
-# abre o arquivo, verifica se abriu corretamente, se sim, copia o valor para a var content
-input_filename = 'entrada.txt'
+# abre o arquivo, verifica se abriu corretamente, se sim, copia o valor para a var conteudo
+input_filename = 'corpus-sentence-pt-br.txt'
 arquivo_entrada = open(input_filename, 'r')
 if arquivo_entrada.mode == 'r':
-    content = arquivo_entrada.read()
+    conteudo = arquivo_entrada.read()
 arquivo_entrada.close()
 
 # deixa todas as palavras em caixa baixa
-content = content.lower()
+conteudo = conteudo.lower()
 
 # separa todas as palavras e pontuação, palavras com hífen são consideradas uma única palavra
-lista = re.findall(r'[\w-]+[\w]+|[.,!?;]', content)
+lista = re.findall(r'[\w-]+|[\w]+|[.,!?;]', conteudo)
 
 # cria um dicionário onde a chave é a palavra, e o valor a quantidade de vezes que aparece
 resultados = {}
