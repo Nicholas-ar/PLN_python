@@ -11,39 +11,28 @@ centenas = ('cem', 'cento', 'duzentos', 'trezentos',
             'quatrocentos', 'quinhentos', 'seiscentos', 'setecentos', 'oitocentos', 'novecentos')
 
 
+def millions(number, result):
+    new_number = int(number/1000000)
+    print(new_number)
+    if(new_number>1):
+        sufix = 'milhões'
+    else:sufix = 'milhão'
+    if(new_number>99):
+        new_number, result = hundreds(new_number, result)
+    new_number, result = tens(new_number, result)
+    number = number % 1000000
+    result += f' {sufix} '
+    return number, result
+
+
 def thousands(number, result):
-    if(number > 99999):
-        cent_milhar = int(number/100000)
-        number = number-cent_milhar*100000
-        if(number > 999):
-            result += f'{centenas[cent_milhar]} e '
-        elif(cent_milhar == 1):
-            result += f'{centenas[0]} '
-        else:
-            result += f'{centenas[cent_milhar]} '
-
-    if(number > 9999):
-        dez_milhar = int(number/10000)
-        number = number-dez_milhar*10000
-        if(dez_milhar > 1):
-            if(number > 999):
-                result += f'{dezenas[dez_milhar]} e '
-            else:
-                result += f'{dezenas[dez_milhar]} '
-        else:
-            milhar = int(number/1000)
-            number = number - milhar * 1000
-            if(number > 999):
-                result += f'{dez[milhar]} e '
-            else:
-                result += f'{dez[milhar]} '
-
-    if(number > 999):
-        milhar = int(number/1000)
-        number = number-milhar*1000
-        print(milhar)
-        result += f'{unidades[milhar]} '
-    result += f'mil '
+    new_number = int(number/1000)
+    print(new_number)
+    if(new_number>99):
+        new_number, result = hundreds(new_number, result)
+    new_number, result = tens(new_number, result)
+    number = number % 1000
+    result += f' mil '
     return number, result
 
 
@@ -59,6 +48,17 @@ def hundreds(number, result):
     return number, result
 
 
+def tens(number, result):
+    dezena, unidade = divmod(number, 10)
+    if(dezena > 1):
+        result += f'{dezenas[dezena]} e {unidades[unidade]}'
+    elif(dezena == 1):
+        result += f'{dez[unidade]}'
+    else:
+        result += f'{unidades[unidade]}'
+    return number, result
+
+
 number = int(input("Digite o número a ser escrito: "))
 result = ''
 
@@ -66,23 +66,16 @@ if(number < 0):
     result += 'Menos '
     number = number*(-1)
 
+if(number > 999999):
+    number, result = millions(number, result)
+
 if(number > 999):
     number, result = thousands(number, result)
-
 
 if(number > 99):
     number, result = hundreds(number, result)
 
-dezena, unidade = divmod(number, 10)
-
-if(dezena > 1):
-    result += f'{dezenas[dezena]} e {unidades[unidade]}'
-
-elif(dezena == 1):
-    result += f'{dez[unidade]}'
-
-else:
-    result += f'{unidades[unidade]}'
+number, result = tens(number, result)
 
 result = result.capitalize()
 print(result)
