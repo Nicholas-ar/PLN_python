@@ -13,6 +13,7 @@ centenas = ('cem', 'cento', 'duzentos', 'trezentos',
 number = int(input("Digite o número a ser escrito: "))
 result = ''
 prefix = ''
+
 if(number < 0):
     prefix = 'Menos '
     number = number*(-1)
@@ -20,19 +21,19 @@ dezena, unidade = divmod(number, 10)
 
 # definir função para lidar com number<100
 
-""" result = result.capitalize()
-print(f'{result}') """
 
 if(dezena > 1):
-    prefix += f'{dezenas[dezena]} e {unidades[unidade]}'
-    
+    result = prefix + f'{dezenas[dezena]} e {unidades[unidade]}'
+
 elif(dezena == 1):
-    prefix += f'{dez[unidade]}'
-    print(prefix)
-    
+    result = prefix + f'{dez[unidade]}'
+
+
 else:
-    prefix += f'{unidades[unidade]}'
-    print(prefix)
-    
+    result = prefix + f'{unidades[unidade]}'
+
+result = result.capitalize()
+print(result)
+
 
 # {milhar},{centena}
