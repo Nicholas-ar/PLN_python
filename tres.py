@@ -10,11 +10,11 @@ dezenas = ('zero', 'dez', 'vinte', 'trinta', 'quarenta', 'cinquenta',
 centenas = ('cem', 'cento', 'duzentos', 'trezentos',
             'quatrocentos', 'quinhentos', 'seiscentos', 'setecentos', 'oitocentos', 'novecentos')
 
-number = 209
+number = int(input("Digite o número a ser escrito: "))
 result = ''
 prefix = ''
 if(number < 0):
-    prefix = 'Menos'
+    prefix = 'Menos '
     number = number*(-1)
 dezena, unidade = divmod(number, 10)
 
@@ -24,10 +24,15 @@ dezena, unidade = divmod(number, 10)
 print(f'{result}') """
 
 if(dezena > 1):
-    print(f'{dezenas[dezena]} e {unidades[unidade]}')
+    prefix += f'{dezenas[dezena]} e {unidades[unidade]}'
+    
 elif(dezena == 1):
-    print(f'{dez[unidade]}')
+    prefix += f'{dez[unidade]}'
+    print(prefix)
+    
 else:
-    print(f'{unidades[unidade]}')
+    prefix += f'{unidades[unidade]}'
+    print(prefix)
+    
 
 # {milhar},{centena}
