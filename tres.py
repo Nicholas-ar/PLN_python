@@ -81,6 +81,9 @@ if(number < 0):
     result += 'Menos '
     number = number*(-1)
 
+if(number == 0):
+    result += 'Zero '
+
 if(number > 999999999):
     number, result = billions(number, result)
 
