@@ -9,7 +9,7 @@ Exemplo:
 `python um.py`
 
 ---
-um.py - Este script pede um arquivo de texto e organiza as palavras que aparecem nele em ordem decrescente de acordo com sua frequência. A saída é apresentada no terminal e guardada em um arquivo de texto, 'saída.txt'.
+um.py - Este script pede um arquivo de texto, por exemplo, 'entrada.txt' e organiza as palavras que aparecem nele em ordem decrescente de acordo com sua frequência. A saída é apresentada no terminal e guardada em um arquivo de texto, 'saída.txt'.
 
 ---
 dois.py - Este script gera todas as combinações possíveis de uma frase dada. A saída é apresentada no terminal.
