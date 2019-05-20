@@ -10,7 +10,7 @@ dezenas = ('', 'dez', 'vinte', 'trinta', 'quarenta', 'cinquenta',
 centenas = ('cem', 'cento', 'duzentos', 'trezentos',
             'quatrocentos', 'quinhentos', 'seiscentos', 'setecentos', 'oitocentos', 'novecentos')
 
-
+#adiciona centenas, dezenas e unidades de bilhão de acordo com o número recebido
 def billions(number, result):
     new_number = int(number/1000000000)
     if(new_number > 1):
@@ -24,7 +24,7 @@ def billions(number, result):
     result += f' {sufix} '
     return number, result
 
-
+#adiciona centenas, dezenas e unidades de milhão de acordo com o número recebido
 def millions(number, result):
     new_number = int(number/1000000)
     if(new_number > 1):
@@ -38,7 +38,7 @@ def millions(number, result):
     result += f' {sufix} '
     return number, result
 
-
+#adiciona centenas, dezenas e unidades de milhar de acordo com o número recebido
 def thousands(number, result):
     new_number = int(number/1000)
     if(new_number > 99):
@@ -48,7 +48,7 @@ def thousands(number, result):
     result += f' mil '
     return number, result
 
-
+#adiciona centenas à string de acordo com o número recebido
 def hundreds(number, result):
     centena = int(number/100)
     number = number-centena*100
@@ -60,7 +60,7 @@ def hundreds(number, result):
         result += f'{centenas[centena]}'
     return number, result
 
-
+# adiciona dezenas e unidades à string de acordo com o número recebido
 def tens(number, result):
     dezena, unidade = divmod(number, 10)
     if(dezena > 1 and unidade > 0):
@@ -77,13 +77,17 @@ def tens(number, result):
 number = int(input("Digite o número a ser escrito: "))
 result = ''
 
+# caso o número digitado seja menor que 0, é adicionado um sufixo 'menos'
+# ao resultado, e o número é multiplicado por (-1) para que fique positivo
 if(number < 0):
     result += 'Menos '
     number = number*(-1)
 
+# caso específico em que o número digitado é 0
 if(number == 0):
     result += 'Zero '
 
+# de acordo com o tamanho do número, são chamadas as funções adequadas
 if(number > 999999999):
     number, result = billions(number, result)
 
