@@ -2,7 +2,7 @@ import re
 import operator
 
 # abre o arquivo, verifica se abriu corretamente, se sim, copia o valor para a var conteudo
-input_filename = 'entrada.txt'
+input_filename = input('Insira o nome do arquivo a ser aberto com a extensão:\n')
 arquivo_entrada = open(input_filename, 'r')
 if arquivo_entrada.mode == 'r':
     conteudo = arquivo_entrada.read()
